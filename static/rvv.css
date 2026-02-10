@@ -1,0 +1,115 @@
+:root {
+    --harvest-orange: #ff7b00ff;
+    --dark-orange: #ff8800ff;
+    --orange: #ffaa00ff;
+    --amber-glow: #ffa200ff;
+    --white: #ffffff;
+}
+
+
+h2 {
+    color: var(--harvest-orange);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+button[onclick="AbrirModalRVV()"] {
+    background: linear-gradient(90deg, var(--harvest-orange), var(--orange));
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 123, 0, 0.3);
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+}
+
+.modal > div {
+    background: white;
+    width: 90%;
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal h3 { color: var(--harvest-orange); margin-bottom: 15px; }
+
+form label { font-weight: 600; color: #444; display: block; margin-top: 10px; }
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    background: var(--harvest-orange);
+    margin-top: 20px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+thead { background: var(--harvest-orange); color: white; }
+
+th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+
+
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; } 
+    
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--orange);
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid #f9f9f9;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+        color: var(--harvest-orange);
+    }
+}

@@ -1,0 +1,26 @@
+
+
+{% block content %}
+<link rel="stylesheet" href="static/cadastrar.css">
+<div class="container-cadastro">
+    <div class="card-form">
+        {% if erro %}
+            <script>
+               alert('{{ erro }}');
+            </script>
+        {% endif %}
+
+        <h1>Cadastrar Usuário</h1>
+        
+        <form method="POST" autocomplete="off" action="/cadastrar">
+            <label>Usuário</label>
+            <input type="text" name="usuario" placeholder="Digite o nome de usuário" required>
+
+            <label>Senha</label>
+            <input type="password" name="senha" placeholder="Crie uma senha" required>
+
+            <button type="submit" class="btn-cadastrar">Cadastrar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

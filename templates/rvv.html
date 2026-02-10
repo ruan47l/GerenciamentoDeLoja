@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='rvv.css') }}">
+
+    <h2>RVV - Relatório</h2>
+    
+    <div>
+        <button onclick="AbrirModalRVV()">
+            <i class="bi bi-plus-circle"></i> Adicionar Perda/Avaria (RVV)
+        </button>
+    </div>
+
+    <div id="modalRVV" class="modal">
+        <div>
+            <span class="fechar" onclick="fecharModalRVV()" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
+            <h3>Novo Lançamento Manual</h3>
+            <hr>
+            <form action="{{ url_for('adicionar_rvv_manual') }}" method="POST">
+                <label>Data:</label>
+                <input type="date" name="data" required>
+
+                <label>Produto:</label>
+                <select name="produto_id" required>
+                    <option value="">Selecione o Produto</option>
+                    {% for p in produtos_lista %}
+                        <option value="{{ p.id }}">{{ p.produto }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Tipo:</label>
+                <select name="tipo" required>
+                    <option value="VENCIMENTO">Vencimento</option>
+                    <option value="ROUBO">Roubo</option>
+                    <option value="AVARIA">Avaria</option>
+                </select>
+
+                <label>Quantidade:</label>
+                <input type="number" name="quantidade" step="0.01" required>
+
+                <label>Preço Unitário:</label>
+                <input type="number" name="preco_unitario" step="0.01" required>
+
+                <button type="submit" style="padding: 12px; background: var(--harvest-orange); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                    Salvar no Relatório
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Produto</th>
+                <th>Tipo</th>
+                <th>Quantidade</th>
+                <th>Preço Unit.</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in registros %}
+            <tr>
+                <td data-label="Data">{{ r.data }}</td>
+                <td data-label="Produto"><strong>{{ r.produto }}</strong></td>
+                <td data-label="Tipo">{{ r.tipo }}</td>
+                <td data-label="Quantidade">{{ r.quantidade }}</td>
+                <td data-label="Preço Unit.">R$ {{ '%.2f'|format(r.preco_unitario) }}</td>
+                <td data-label="Total">R$ {{ '%.2f'|format(r.total) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

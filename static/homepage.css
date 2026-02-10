@@ -1,0 +1,127 @@
+:root {
+    --harvest-orange: #ff7b00ff;
+    --dark-orange: #ff8800ff;
+    --deep-saffron: #ff9500ff;
+    --amber-glow: #ffa200ff;
+    --orange: #ffaa00ff;
+    --amber-flame: #ffb700ff;
+    --school-bus-yellow: #ffc300ff;
+    --bright-amber: #ffd000ff;
+    --bright-gold: #ffdd00ff;
+    --sunbeam-yellow: #ffea00ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--harvest-orange), var(--orange), var(--school-bus-yellow));
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+main {
+    width: 100%;
+    max-width: 400px;
+}
+
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: var(--harvest-orange);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    font-size: 2rem;
+}
+
+
+form {
+    text-align: left;
+}
+
+label {
+    color: #555;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: var(--harvest-orange);
+    box-shadow: 0 0 8px rgba(255, 123, 0, 0.2);
+}
+
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: var(--harvest-orange);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: var(--dark-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+}
+
+
+.actions a {
+    text-decoration: none;
+    color: var(--harvest-orange);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.actions a:hover {
+    color: var(--dark-orange);
+    text-decoration: underline;
+}
+
+
+@media (max-width: 400px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+}

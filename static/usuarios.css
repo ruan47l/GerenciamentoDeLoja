@@ -1,0 +1,107 @@
+:root {
+    --harvest-orange: #ff7b00ff;
+    --dark-orange: #ff8800ff;
+    --orange: #ffaa00ff;
+    --text-dark: #333;
+}
+
+h1 {
+    color: var(--harvest-orange);
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+
+.usuarios-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+thead {
+    background-color: var(--harvest-orange);
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    border-radius: 10px 10px 0 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+
+tbody tr:hover {
+    background-color: #fffaf5;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-circle {
+    width: 35px;
+    height: 35px;
+    background: var(--orange);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        border: 1px solid var(--orange);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        background: white;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        font-weight: bold;
+    }
+
+    td:before {
+        content: "Nome do Usuário:";
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        text-align: left;
+        color: var(--harvest-orange);
+        font-weight: 600;
+    }
+}

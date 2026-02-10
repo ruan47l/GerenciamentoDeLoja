@@ -1,0 +1,87 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.container-cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF9500;
+    min-height: 100vh; 
+}
+
+.card-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px; 
+    border-top: 5px solid var(--harvest-orange);
+}
+
+.card-form h1 {
+    color: var(--harvest-orange);
+    margin-bottom: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.card-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.card-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.card-form input:focus {
+    border-color: var(--amber-glow);
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 3px solid #FF9500;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: linear-gradient(90deg, var(--dark-orange), var(--amber-flame));
+
+}
+
+.btn-cadastrar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, var(--dark-orange), var(--amber-flame));
+}
+
+.btn-cadastrar:active {
+    transform: translateY(0);
+}
+
+
+@media (max-width: 480px) {
+    .card-form {
+        padding: 20px;
+        margin: 10px;
+    }
+}

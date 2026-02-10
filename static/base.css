@@ -1,0 +1,155 @@
+/* Variáveis de Cores conforme sua paleta */
+:root {
+    --harvest-orange: #ff7b00ff;
+    --dark-orange: #ff8800ff;
+    --deep-saffron: #ff9500ff;
+    --amber-glow: #ffa200ff;
+    --orange: #ffaa00ff;
+    --amber-flame: #ffb700ff;
+    --school-bus-yellow: #ffc300ff;
+    --bright-amber: #ffd000ff;
+    --bright-gold: #ffdd00ff;
+    --sunbeam-yellow: #ffea00ff;
+    --white: #ffffff;
+    --bg-light: #f4f7f6;
+    --text-dark: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow: hidden; /* Evita scroll duplo no body */
+}
+
+/* MENU LATERAL */
+.sidebar {
+    background: linear-gradient(180deg, var(--harvest-orange), var(--orange));
+    width: 70px;
+    height: 100vh;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+/* MENU ABERTO */
+.sidebar.aberto {
+    width: 240px;
+}
+
+/* BOTÃO DE MENU */
+#menu {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+#menu:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* LISTA DE OPÇÕES */
+.opcoes {
+    list-style: none;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.opcoes li {
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.opcoes li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 8px;
+    white-space: nowrap; /* Evita quebra de texto quando fechado */
+    transition: all 0.3s;
+}
+
+.opcoes li a:hover {
+    background: var(--sunbeam-yellow);
+    color: var(--harvest-orange);
+}
+
+/* Esconder texto quando o menu estiver fechado */
+.sidebar:not(.aberto) .opcoes li a {
+    font-size: 0;
+    justify-content: center;
+}
+
+/* Adicionando um ícone imaginário ou ponto para quando fechar */
+.sidebar:not(.aberto) .opcoes li a::before {
+    content: "•"; /* Pode substituir por ícones da biblioteca se quiser */
+    font-size: 24px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+main {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto; /* Scroll apenas no conteúdo */
+    background: var(--white);
+    margin: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+/* RESPONSIVIDADE PARA CELULAR */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+
+    .sidebar.aberto {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .opcoes {
+        display: none; /* Esconde no mobile por padrão */
+    }
+
+    .sidebar.aberto .opcoes {
+        display: block;
+        transform: none;
+        opacity: 1;
+    }
+
+    main {
+        margin: 10px;
+        padding: 15px;
+    }
+}

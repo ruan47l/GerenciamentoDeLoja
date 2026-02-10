@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='produtos.css') }}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    {% if erro %}
+        <script>
+           alert('{{ erro }}');
+        </script>
+    {% endif %}
+    
+    <div class="container-produtos">
+        <header class="header-actions">
+            <h1>Produtos</h1>
+            
+            <div class="search-and-add">
+                <form method="get" action="{{ url_for('produtos') }}" class="search-form" autocomplete="off">
+                    <input 
+                        type="text" 
+                        name="q" 
+                        placeholder="Pesquisar produto..."
+                        value="{{ request.args.get('q', '') }}"
+                    >
+                    <button type="submit" class="btn-search"><i class="bi bi-search"></i></button>
+                </form>
+
+                <button class="btn-novo" onclick="AbrirModal()">
+                    <i class="bi bi-plus-circle"></i> Novo Produto
+                </button>
+            </div>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                        <th>Código</th>
+                        <th>Vencimento</th>
+                        <th>Loja</th>
+                        <th>Mínimo</th>
+                        <th style="text-align: center;">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in produtos %}
+                    <tr>
+                        <td data-label="Produto"><strong>{{ p['produto'] }}</strong></td>
+                        <td data-label="Preço">R$ {{ "%.2f"|format(p['preco']|float) }}</td>
+                        <td data-label="Código">{{ p['codigo'] }}</td>
+                        <td data-label="Vencimento">{{ p['vencimento'] }}</td>
+                        <td data-label="Loja">{{ p['estoque_loja'] }}</td>
+                        <td data-label="Mínimo">{{ p['estoque_minimo'] }}</td>
+                        <td data-label="Ações" class="td-acoes">
+                            <div class="btn-group">
+                                <button class="btn-icon btn-edit" onclick="abrirModalEdit(
+                                    '{{ p['id'] }}',
+                                    '{{ p['produto'] }}',
+                                    '{{ p['preco'] }}',
+                                    '{{ p['codigo'] }}',
+                                    '{{ p['vencimento'] }}',
+                                    '{{ p['estoque_loja'] }}',
+                                    '{{ p['estoque_minimo'] }}'
+                                )">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                
+                                <form action="{{ url_for('excluir_produto', id=p['id']) }}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn-icon btn-delete" onclick="return confirm('Deseja excluir este produto?')">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal" id="modal">
+            <div class="modal-conteudo">
+                <span class="fechar" onclick="fecharModal()">&times;</span>
+                <h2>Cadastrar Produto</h2>
+                <hr>
+                <form method="post" autocomplete="off">
+                    <label>Nome do Produto</label>
+                    <input type="text" name="produto" required>
+
+                    <div class="row-inputs">
+                        <div class="col">
+                            <label>Preço</label>
+                            <input type="number" name="preco" step="0.01" required>
+                        </div>
+                        <div class="col">
+                            <label>Código</label>
+                            <input type="text" name="codigo">
+                        </div>
+                    </div>
+
+                    <label>Vencimento</label>
+                    <input type="date" name="vencimento">
+
+                    <div class="row-inputs">
+                        <div class="col">
+                            <label>Estoque Loja</label>
+                            <input type="number" name="estoqueLoja" required>
+                        </div>
+                        <div class="col">
+                            <label>Estoque Mínimo</label>
+                            <input type="number" name="estoqueMinimo" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-enviar">Salvar Produto</button>
+                </form>
+            </div>  
+        </div>
+
+        <div id="modalEdit" class="modal">
+            <div class="modal-conteudo">
+                <span class="fechar" onclick="fecharModalEdit()">&times;</span>
+                <h2>Editar Produto</h2>
+                <hr>
+                <form method="post" action="{{ url_for('editar_produto') }}" autocomplete="off">
+                    <input type="hidden" name="id" id="produtoIdEdit">
+
+                    <label>Nome do Produto</label>
+                    <input type="text" name="ProdutoEdit" id="ProdutoEdit" required>
+
+                    <div class="row-inputs">
+                        <div class="col">
+                            <label>Preço</label>
+                            <input type="number" name="PrecoEdit" id="PrecoEdit" step="0.01" required>
+                        </div>
+                        <div class="col">
+                            <label>Código</label>
+                            <input type="text" name="codigoEdit" id="codigoEdit">
+                        </div>
+                    </div>
+
+                    <label>Vencimento</label>
+                    <input type="date" name="vencimentoEdit" id="vencimentoEdit">
+
+                    <div class="row-inputs">
+                        <div class="col">
+                            <label>Estoque Loja</label>
+                            <input type="number" name="estoqueLojaEdit" id="estoqueLojaEdit" required>
+                        </div>
+                        <div class="col">
+                            <label>Estoque Mínimo</label>
+                            <input type="number" name="estoqueMinimoEdit" id="estoqueMinimoEdit" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-enviar">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>        
+    </div>
+{% endblock %}

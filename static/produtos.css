@@ -1,0 +1,134 @@
+:root {
+  --primary: var(--harvest-orange, #ff7b00);
+  --secondary: var(--orange, #ffaa00);
+  --accent: var(--sunbeam-yellow, #ffea00);
+  --danger: #dc3545;
+  --bg-card: #ffffff;
+}
+
+
+h1 {
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+button, .btn-submit {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+
+input[name="q"] {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  width: 250px;
+}
+
+input[name="q"]:focus {
+  border-color: var(--primary);
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+thead {
+  background-color: var(--primary);
+  color: white;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.bi-pen { color: #007bff; cursor: pointer; font-size: 1.2rem; }
+.bi-file-earmark-x-fill { color: var(--danger); cursor: pointer; font-size: 1.2rem; }
+
+
+.modal, #modalEdit {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(3px);
+}
+
+.modal-conteudo, .modal-conteudo-edit {
+  background: white;
+  width: 90%;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.modal-conteudo h2 { color: var(--primary); margin-bottom: 20px; }
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 600;
+  color: #444;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .header-actions { flex-direction: column; align-items: stretch; }
+  input[name="q"] { width: 100%; }
+
+  
+  table, thead, tbody, th, td, tr { display: block; }
+  thead tr { position: absolute; top: -9999px; left: -9999px; }
+  tr { border: 1px solid #ccc; margin-bottom: 15px; border-radius: 10px; padding: 10px; background: #fff; }
+  td { border: none; position: relative; padding-left: 50%; text-align: right; }
+  td:before {
+      content: attr(data-label);
+      position: absolute; left: 10px; width: 45%; padding-right: 10px;
+      white-space: nowrap; font-weight: bold; text-align: left; color: var(--primary);
+  }
+}
