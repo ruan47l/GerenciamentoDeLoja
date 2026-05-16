@@ -1,7 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import sqlite3
+import os
 
 app = Flask(__name__)
+
+
+# Cria o caminho para a pasta /data que existirá no Render
+base_dir = os.path.abspath(os.path.dirname(__file__))
+# Se estiver no Render, usa a pasta /data/ (que será persistente), se não, usa a local
+if os.environ.get('RENDER'):
+    db_path = "/data/banco.db"
+else:
+    db_path = os.path.join(base_dir, "banco.db")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.secret_key = 'minha_chave_secreta'
 
 
@@ -285,5 +297,6 @@ def finalizar_venda():
 
     return jsonify({"status": "ok"})
 
-if __name__ == '__main__':
-  app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
